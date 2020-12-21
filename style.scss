@@ -1,0 +1,70 @@
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+html{
+    // background-color: teal;
+    font-family: "Noto Sans KR", sans-serif !important;
+}
+
+.container{
+    background-color: white;
+    border-radius:12px;
+    box-shadow: 0px 0px 36px 15px rgba(0, 0, 0, 0.28);
+    max-width: 768px;
+    margin: 24px auto;
+}
+
+.header{
+    display : flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding : 4px 16px;
+
+    .date-box{
+        display : flex;
+        flex-direction: row;
+        align-items: center;
+    }
+    .date-box__prev, .date-box__next{
+        margin:8px;
+    }
+}
+
+.content{
+    padding : 24px;
+    min-height: 320px;
+    
+    &__line{
+    }
+    .list-box{
+        list-style:none;
+        padding : 0px;
+
+        &__item{
+            display: flex;
+            flex-direction : row;
+            align-items: center;
+            justify-content: space-between;
+        }
+        &__checkbox{ 
+            height:28px;
+            .material-icons{
+            font-size : 28px;
+            }
+        }
+        &__input{
+            border:none;
+            width:100%;
+            height : 28px;
+            font-size : 24px;
+            padding : 0px;
+        }
+        &__button{
+            display : flex;
+        }
+    }
+    
+}
+
+
+

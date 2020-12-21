@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Just Do it!</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
 <body>
@@ -16,9 +17,9 @@
                     <div class="logo__title">Just<br>Do it</div>
                 </div>
             </div>
-            <div class="header__date-box">
+            <div class="date-box">
                 <div class="date-box__prev">&lt</div>
-                <div class="date-box__date">asdasd</div>
+                <div class="date-box__date"></div>
                 <div class="date-box__next">&gt</div>
             </div>
             <div class="header__mypage">MyPage</div>
@@ -27,21 +28,25 @@
         <div class="content">
             <hr class="content__line">
             <!-- top line -->
-            <ul class="content__list">
-                <li class="content__item">
-                    <div class="content__checkbox"></div>
-                    <input class="content__input" type="text">
-                    <div class="content__button">
-                        <div class="content__button--edit"></div>
-                        <div class="content__button--delete"></div>
+            <ul class="list-box">
+                <li class="list-box__item">
+                    <div class="list-box__checkbox">
+                        <span class="material-icons">check_box_outline_blank</span>
                     </div>
-                    <hr class="content__line">
-                    <!-- bottom line -->
+                    <input class="list-box__input" type="text">
+                    <div class="list-box__button">
+                        <div class="listbox__button--edit">
+                            <span class="material-icons">edit</span>
+                        </div>
+                        <div class="list-box__button--delete">
+                            <span class="material-icons">delete_forever</span>
+                        </div>
+                    </div>
                 </li>
             </ul>
         </div>
     </div>
 </body>
-<script src="script.js"></script>
+<script src="main.js"></script>
 
 </html>
