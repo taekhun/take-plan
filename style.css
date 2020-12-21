@@ -1,0 +1,21 @@
+html{
+    background-color: teal;
+}
+
+.container{
+    background-color: white;
+    max-width: 800px;
+    margin: 24px auto;
+}
+
+.header__inner{
+    display : flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header__date{
+    display : flex;
+    flex-direction: row;
+}
