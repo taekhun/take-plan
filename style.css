@@ -8,14 +8,14 @@ html{
     margin: 24px auto;
 }
 
-.header__inner{
+.header{
     display : flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
 }
 
-.header__date{
+.header__date-box{
     display : flex;
     flex-direction: row;
 }

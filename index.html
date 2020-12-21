@@ -6,38 +6,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Just Do it!</title>
     <link rel="stylesheet" href="style.css">
-    <script></script>
 </head>
 
 <body>
     <div class="container">
         <div class="header">
-            <div class="header__inner">
-                <div class="header__logo">
-                    <div class="logo">
-                        <div class="logo__title">Just<br>Do it</div>
-                    </div>
-                </div>
-                <div class="header__date">
-                    <div class="header__date--prev">&lt</div>
-                    <div class="header__date--date"></div>
-                    <div class="header__date--next">&gt</div>
-                </div>
-                <div class="header__mypage">
-                    <div class="">
-                        dddd
-                    </div>
+            <div class="header__logo">
+                <div class="logo">
+                    <div class="logo__title">Just<br>Do it</div>
                 </div>
             </div>
+            <div class="header__date-box">
+                <div class="date-box__prev">&lt</div>
+                <div class="date-box__date">asdasd</div>
+                <div class="date-box__next">&gt</div>
+            </div>
+            <div class="header__mypage">MyPage</div>
         </div>
+
         <div class="content">
-            <hr class="content__list__line">
+            <hr class="content__line">
+            <!-- top line -->
             <ul class="content__list">
-                <li class="content__list--item"></li>
-                <hr class="content__list__line">
+                <li class="content__item">
+                    <div class="content__checkbox"></div>
+                    <input class="content__input" type="text">
+                    <div class="content__button">
+                        <div class="content__button--edit"></div>
+                        <div class="content__button--delete"></div>
+                    </div>
+                    <hr class="content__line">
+                    <!-- bottom line -->
+                </li>
             </ul>
         </div>
     </div>
 </body>
+<script src="script.js"></script>
 
 </html>
