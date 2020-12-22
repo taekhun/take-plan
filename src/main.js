@@ -4,8 +4,8 @@ const checkBox = document.querySelector(".list-box__checkbox > .material-icons")
 const listBox = document.querySelector(".list-box")
 const listItem = document.querySelector(".list-box__item");
 const listInput = document.querySelector(".list-box__input");
-const delBtn = document.querySelector("list-box__button--delete");
-const editBtn = document.querySelector("list-box__button--edit");
+const delBtn = document.querySelector(".list-box__button--delete");
+const editBtn = document.querySelector(".list-box__button--edit");
 
 const dateBox = document.querySelector('.date-box__date');
 
@@ -19,18 +19,20 @@ dateBox.style.fontSize="24px";
 let listCount = 1;
 const listMax = 5;
 
-listBox.addEventListener("focusout", () => addList());
-
+// listBox.addEventListener("focusout", () => addList());
+// delBtn.addEventListener("click", (event) => deleteList(event));
 
 function addList( ){
     if(listCount == listMax) return false;     
-    const newItem = listItem.cloneNode(true);
-    listBox.appendChild(newItem);
     listCount++;
+    
+    const newItem = listItem.cloneNode(true);
+    newItem.id = `item-${listCount}`;
+    listBox.appendChild(newItem);
 }
 
-function deleteList(){
-    
+function deleteList(event){
+    console.log(event.currentTarget.parentNode.parentNode.id);
 }
 
 

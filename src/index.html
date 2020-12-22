@@ -29,7 +29,7 @@
             <hr class="content__line">
             <!-- top line -->
             <ul class="list-box">
-                <li class="list-box__item">
+                <li class="list-box__item" id="item-1" onfocusout="addList()">
                     <div class="list-box__checkbox">
                         <span class="material-icons">check_box_outline_blank</span>
                     </div>
@@ -38,7 +38,7 @@
                         <div class="listbox__button--edit">
                             <span class="material-icons">edit</span>
                         </div>
-                        <div class="list-box__button--delete">
+                        <div class="list-box__button--delete" onclick="deleteList(event)">
                             <span class="material-icons">delete_forever</span>
                         </div>
                     </div>

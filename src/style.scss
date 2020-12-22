@@ -45,10 +45,11 @@ html{
             flex-direction : row;
             align-items: center;
             justify-content: space-between;
-            margin: 4px 0;
+            margin : 0 4px;
         }
         &__checkbox{ 
             height:28px;
+            cursor: pointer;
             .material-icons{
             font-size : 28px;
             }
@@ -62,6 +63,7 @@ html{
         }
         &__button{
             display : flex;
+            cursor: pointer;
         }
     }
     
