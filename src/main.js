@@ -3,7 +3,7 @@
 const checkBox = document.querySelector(".list-box__checkbox > .material-icons");
 const listBox = document.querySelector(".list-box")
 const listItem = document.querySelector(".list-box__item");
-const listInput = document.querySelector(".list-box__input");
+
 const delBtn = document.querySelector(".list-box__button--delete");
 const editBtn = document.querySelector(".list-box__button--edit");
 const dateBox = document.querySelector('.date-box__date');
