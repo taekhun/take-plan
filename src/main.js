@@ -3,7 +3,7 @@
 const checkBox = document.querySelector(".list-box__checkbox > .material-icons");
 const listBox = document.querySelector(".list-box")
 const listItem = document.querySelector(".list-box__item");
-
+const listInput = document.querySelector(".list-box__input");
 const delBtn = document.querySelector(".list-box__button--delete");
 const editBtn = document.querySelector(".list-box__button--edit");
 const dateBox = document.querySelector('.date-box__date');
@@ -20,12 +20,13 @@ const listMax = 5;
 function addList(event){
     if(listCount == listMax) return false;     
     // send value
-    const currentId = event.currentTarget.id;
+    
+    localStorage.setItem(listCount, listInput.value);
 
     listCount++;
     // add list
     const newItem = listItem.cloneNode(true);
-    newItem.querySelector(".list-box__input").value="";
+    // newItem.querySelector(".list-box__text").value="";
     newItem.id = `item-${listCount}`;
     listBox.appendChild(newItem);
 }
@@ -43,10 +44,11 @@ function deleteList(event){
     listCount--;
 }
 
-function setData(event){
-
+function displayItem(event){
+    console.log(localStorage.getItem(1));
 }
 
+displayItem(event);
 
 // checkBox.addEventListenter('click', ()=>{
 //     console.log("HELLO");
