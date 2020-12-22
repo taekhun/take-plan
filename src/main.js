@@ -20,10 +20,10 @@ const listMax = 5;
 function addList(event){
     if(listCount == listMax) return false;     
     // send value
-    const currentId = event.currentTarget.id;
-
-    listCount++;
+    console.log(event.currentTarget);
+    event.currentTarget.value = "HELLO";
     // add list
+    listCount++;
     const newItem = listItem.cloneNode(true);
     newItem.querySelector(".list-box__input").value="";
     newItem.id = `item-${listCount}`;
@@ -47,6 +47,11 @@ function setData(event){
 
 }
 
+function enterkey(e) {
+    if (e.keyCode == 13) {
+        addList(e);
+    }
+}
 
 // checkBox.addEventListenter('click', ()=>{
 //     console.log("HELLO");

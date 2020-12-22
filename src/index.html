@@ -29,13 +29,15 @@
             <hr class="content__line">
             <!-- top line -->
             <ul class="list-box">
-                <li class="list-box__item" id="item-1" onfocusout="addList(event)">
+                <li class="list-box__item" id="item-1">
                     <div class="list-box__checkbox">
                         <span class="material-icons">check_box_outline_blank</span>
                     </div>
-                    <form class="list-box__form">
-                        <input class="list-box__input" type="text" placeholder="Tell me what to do" value="">
-                    </form>
+
+                    <input class="list-box__input" type="text" placeholder="Tell me what to do" value=""
+                        onkeydown="enterkey(event)">
+
+
                     <div class="list-box__button">
                         <div class="listbox__button--edit">
                             <span class="material-icons">edit</span>
