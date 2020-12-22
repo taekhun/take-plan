@@ -30,12 +30,12 @@
             <!-- top line -->
             <ul class="list-box">
                 <li class="list-box__item" id="item-1">
-                    <div class="list-box__checkbox">
+                    <div class="list-box__checkbox" onclick="checkButton(event)">
                         <span class="material-icons">check_box_outline_blank</span>
                     </div>
 
                     <input class="list-box__input" type="text" placeholder="Tell me what to do" value=""
-                        onkeydown="enterkey(event)">
+                        onkeyup="savekey(event)">
 
 
                     <div class="list-box__button">

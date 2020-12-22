@@ -1,6 +1,6 @@
 "use strict"
 
-const checkBox = document.querySelector(".list-box__checkbox > .material-icons");
+const checkBox = document.querySelector(".list-box__checkbox");
 const listBox = document.querySelector(".list-box")
 const listItem = document.querySelector(".list-box__item");
 const listInput = document.querySelector(".list-box__input");
@@ -17,11 +17,11 @@ dateBox.style.fontSize="24px";
 let listCount = 1;
 const listMax = 5;
 
-function addList(event){
+function addList(){
     if(listCount == listMax) return false;     
     // send value
-    console.log(event.currentTarget);
-    event.currentTarget.value = "HELLO";
+    // console.log(event.currentTarget.document.innerText);
+    
     // add list
     listCount++;
     const newItem = listItem.cloneNode(true);
@@ -47,12 +47,46 @@ function setData(event){
 
 }
 
-function enterkey(e) {
-    if (e.keyCode == 13) {
-        addList(e);
+
+function savekey(event){
+    const currentId = event.currentTarget.parentNode.id.charAt(5);
+    const input = document.querySelector(`#item-${currentId}>.list-box__input`);
+    if(event.keyCode == 13)
+    {
+        if(input.value == "")
+        {
+            alert("값을 입력하세요.")
+        }
+        else{
+            document.querySelector(`#item-${currentId}>.list-box__input`).innerText = input.value;
+            // console.log(input.value);
+            addList(); 
+        }
     }
 }
 
-// checkBox.addEventListenter('click', ()=>{
-//     console.log("HELLO");
-// });
+// function enterkey(event) {
+//     if (event.keyCode == 13) {
+//         addList(event);
+//     }
+// }
+
+let toggle = false;
+
+function checkButton(event){
+    const currentId = event.currentTarget.parentNode.id
+    const checkBtn = document.querySelector(`#${currentId} .material-icons`);
+
+    toggle =!toggle;
+    
+    if(toggle == true)
+    {
+        checkBtn.innerText = "check_box";
+        checkBtn.parentNode.parentNode.querySelector(".list-box__input").style.textDecoration="line-through";
+    }
+    else 
+    {
+        checkBtn.innerText = "check_box_outline_blank";
+        checkBtn.parentNode.parentNode.querySelector(".list-box__input").style.textDecoration="none";
+    }
+}
