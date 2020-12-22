@@ -22,11 +22,10 @@ function addList(event){
     // send value
     const currentId = event.currentTarget.id;
 
-    // console.log(event.currentTarget.id);
-
     listCount++;
     // add list
     const newItem = listItem.cloneNode(true);
+    newItem.querySelector(".list-box__input").value="";
     newItem.id = `item-${listCount}`;
     listBox.appendChild(newItem);
 }
