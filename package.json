@@ -1,0 +1,23 @@
+{
+  "name": "just-do-it",
+  "version": "1.0.0",
+  "description": "오늘 할 일을 기록할 수 있는 단순한 웹입니다.\r # To Study\r - Vanilla JS\r - BEM CSS",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/taekhun/just-do-it.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/taekhun/just-do-it/issues"
+  },
+  "homepage": "https://github.com/taekhun/just-do-it#readme",
+  "dependencies": {
+    "express": "4.17.1"
+  }
+}
