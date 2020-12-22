@@ -44,7 +44,6 @@ html{
             display: flex;
             flex-direction : row;
             align-items: center;
-            justify-content: space-between;
             margin : 0 4px;
         }
         &__checkbox{ 
@@ -54,6 +53,9 @@ html{
             font-size : 28px;
             }
         }
+        &__form{
+            width:100%;
+        }
         &__input{
             border:none;
             width:100%;
@@ -61,6 +63,7 @@ html{
             font-size : 24px;
             padding : 0px;
         }
+
         &__button{
             display : flex;
             cursor: pointer;

@@ -6,9 +6,7 @@ const listItem = document.querySelector(".list-box__item");
 const listInput = document.querySelector(".list-box__input");
 const delBtn = document.querySelector(".list-box__button--delete");
 const editBtn = document.querySelector(".list-box__button--edit");
-
 const dateBox = document.querySelector('.date-box__date');
-
 
 // 날짜 불러오기
 const a = new Date();
@@ -19,20 +17,35 @@ dateBox.style.fontSize="24px";
 let listCount = 1;
 const listMax = 5;
 
-// listBox.addEventListener("focusout", () => addList());
-// delBtn.addEventListener("click", (event) => deleteList(event));
-
-function addList( ){
+function addList(event){
     if(listCount == listMax) return false;     
+    // send value
+    const currentId = event.currentTarget.id;
+
+    // console.log(event.currentTarget.id);
+
     listCount++;
-    
+    // add list
     const newItem = listItem.cloneNode(true);
     newItem.id = `item-${listCount}`;
     listBox.appendChild(newItem);
 }
 
 function deleteList(event){
-    console.log(event.currentTarget.parentNode.parentNode.id);
+    let currentId = event.currentTarget.parentNode.parentNode.id.charAt(5);
+    currentId = Number(currentId);
+    console.log(currentId);
+
+    for(let i = currentId+1; i<= listCount; i++)
+    {
+        document.querySelector(`#item-${i}`).id = `item-${i-1}`;
+    }
+    listBox.removeChild(document.querySelector(`#item-${currentId}`));
+    listCount--;
+}
+
+function setData(event){
+
 }
 
 
