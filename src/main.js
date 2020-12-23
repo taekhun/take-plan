@@ -2,105 +2,87 @@
 
 const checkBox = document.querySelector(".list-box__checkbox");
 const listBox = document.querySelector(".list-box")
-const listItem = document.querySelector(".list-box__item");
-const listInput = document.querySelector(".list-box__input");
-const delBtn = document.querySelector(".list-box__button--delete");
-const editBtn = document.querySelector(".list-box__button--edit");
 const dateBox = document.querySelector('.date-box__date');
 
 // 날짜 불러오기
-const a = new Date();
-dateBox.innerHTML= `${a.getMonth()+1}.${a.getUTCDate()} ${a.toString().substring(0,3)}`;
+let today = new Date();
+dateBox.innerHTML= `${today.getMonth()+1}.${today.getUTCDate()} ${today.toString().substring(0,3)}`;
 dateBox.style.fontSize="24px";
 
+let date = Number(`${today.getMonth()+1}${today.getUTCDate()}`);
+//to save at localstorage
+
 // ListBox에 new item 추가
-let listCount = 1;
+let listCount = 0;
 const listMax = 5;
 
-
-function saveInput(event){
+function addItem(event){
+    //Input 받아오기
     let input = document.querySelector(".input-area").value;
-    // console.log(input.value)
-    //Enter입력시
     if(event.keyCode == 13)
     {
+        document.querySelector(".input-area").value="";
         if(input == "")
         {
             alert("값을 입력하세요.");
         }
-        else
+        else if(listCount != listMax)
         {
-            let li = document.createElement("li");
-            li.id=`item-${listCount}`;
-            li.innerText=input;
-            listBox.appendChild(li);
-            listCount++;
+            listCount++; 
+            let item = document.querySelector("#item-base").cloneNode(true);
+            item.id=`item-${date}-${listCount}`;
+            item.style.display="flex";
+            item.querySelector(".list-box__input").value=input;
+            item.querySelector(".list-box__input").setAttribute("disabled", true);
+
+            setData(item.id, input)
+            listBox.appendChild(item);
             
-
-
-            // // input.setAttribute("disabled", true);
-            // // console.log(document.querySelector(`#item-${currentId+1}>.list-box__input`));
-            // if(document.querySelector(`#item-${listCount}>.list-box__input`).value == "") 
-            // {
-            //     document.querySelector(`#item-${listCount}>.list-box__input`).focus();
-            //     return false;
-            // }
             // sendData(currentId, input.value);
             // // addList(); 
         }
     }
 }
 
-let toggle = false;
-// 수정해야함
-function checkButton(event){
-    const currentId = event.currentTarget.parentNode.id.charAt(5);
-    const checkBtn = document.querySelector(`#item-${currentId} .material-icons`);
+function deleteItem(event){
 
-    toggle =!toggle;
-    
-    if(toggle == true)
-    {
-        checkBtn.innerText = "check_box";
-        checkBtn.parentNode.parentNode.querySelector(".list-box__input").style.textDecoration="line-through";
+}
+
+function editItem(event){
+
+}
+
+function isChecked(event){
+    const currentId = event.currentTarget.parentNode.id;
+    const obj = JSON.parse(localStorage.getItem(`${currentId}`));
+
+    obj.check =! obj.check;
+
+    if(obj.check == false)
+    {   
+        localStorage.setItem(`${currentId}`,JSON.stringify(obj));
+        document.querySelector(`#${currentId} .material-icons`).innerText = "check_box";
     }
-    else 
+    else if(obj.check == true)
     {
-        checkBtn.innerText = "check_box_outline_blank";
-        checkBtn.parentNode.parentNode.querySelector(".list-box__input").style.textDecoration="none";
+        localStorage.setItem(`${currentId}`,JSON.stringify(obj));
+        document.querySelector(`#${currentId} .material-icons`).innerText = "check_box_outline_blank";
     }
 }
 
+function setData(id, value){
+    const obj = {
+        text : value,
+        check : false
+    }
+    localStorage.setItem(`${id}`, JSON.stringify(obj));
+}
 
 
 function init(){
-    // document.querySelector("#item-1").style.visiblity="hidden";
-    let a = new Array();
-    for(let i=1 ; i<=5; i++)
-    {
-        a[i]=localStorage.getItem(`${i}`);
-        if(a[i]!=null)
-        {
-            if(i==1)
-            {
-                document.querySelector("#item-1>.list-box__input").value=a[i];
-            }
-            else {
-                const item = listItem.cloneNode(true);
-                item.querySelector(".list-box__input").value=a[i];
-                item.id = `item-${i}`;
-                listBox.appendChild(item);
-                document.querySelector(`#item-${i}>.list-box__input`).removeAttribute("disabled");
-                // document.querySelector(`#item-${i}>.list-box__input`).focus();  
-                listCount++;    
-            }
-                  
-        }
-    }
-    
-    
+    document.querySelector("#item-base").style.display="none";
+    //가려주긔
 
-    // console.log(a);    
 }
 
 init();
@@ -168,4 +150,57 @@ init();
 // function sendData(id, data){
 //     // console.log(id, data);
 //     localStorage.setItem(`${id}`, `${data}`);
+// }
+
+
+// function init(){
+//     // document.querySelector("#item-1").style.visiblity="hidden";
+//     let a = new Array();
+//     for(let i=1 ; i<=5; i++)
+//     {
+//         a[i]=localStorage.getItem(`${i}`);
+//         if(a[i]!=null)
+//         {
+//             if(i==1)
+//             {
+//                 document.querySelector("#item-1>.list-box__input").value=a[i];
+//             }
+//             else {
+//                 const item = listItem.cloneNode(true);
+//                 item.querySelector(".list-box__input").value=a[i];
+//                 item.id = `item-${i}`;
+//                 listBox.appendChild(item);
+//                 document.querySelector(`#item-${i}>.list-box__input`).removeAttribute("disabled");
+//                 // document.querySelector(`#item-${i}>.list-box__input`).focus();  
+//                 listCount++;    
+//             }
+                  
+//         }
+//     }
+    
+    
+
+//     // console.log(a);    
+// }
+
+// init();
+
+// let toggle = false;
+// // 수정해야함
+// function checkButton(event){
+//     const currentId = event.currentTarget.parentNode.id.charAt(5);
+//     const checkBtn = document.querySelector(`#item-${currentId} .material-icons`);
+
+//     toggle =!toggle;
+    
+//     if(toggle == true)
+//     {
+//         checkBtn.innerText = "check_box";
+//         checkBtn.parentNode.parentNode.querySelector(".list-box__input").style.textDecoration="line-through";
+//     }
+//     else 
+//     {
+//         checkBtn.innerText = "check_box_outline_blank";
+//         checkBtn.parentNode.parentNode.querySelector(".list-box__input").style.textDecoration="none";
+//     }
 // }

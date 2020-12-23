@@ -26,10 +26,10 @@
         </div>
 
         <div class="content">
-            <input type="text" class="input-area" placeholder="Tell me what to do" onkeyup="saveInput(event)">
+            <input type="text" class="input-area" placeholder="Tell me what to do" onkeyup="addItem(event)">
             <ul class="list-box">
-                <!-- <li class="list-box__item" id="item-1">
-                    <div class="list-box__checkbox" onclick="checkButton(event)">
+                <li class="list-box__item" id="item-base">
+                    <div class="list-box__checkbox" onclick="isChecked(event)">
                         <span class="material-icons">check_box_outline_blank</span>
                     </div>
 
@@ -43,7 +43,7 @@
                             <span class="material-icons">delete_forever</span>
                         </div>
                     </div>
-                </li> -->
+                </li>
             </ul>
         </div>
     </div>
