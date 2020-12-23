@@ -38,8 +38,11 @@ input{
     padding : 24px;
     min-height: 320px;
     
-    &__line{
+    .input-area{
+        width:100%;
+        text-align : center;
     }
+
     .list-box{
         list-style:none;
         padding : 0px;

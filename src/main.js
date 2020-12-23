@@ -17,86 +17,36 @@ dateBox.style.fontSize="24px";
 let listCount = 1;
 const listMax = 5;
 
-function addList(){
-    if(listCount == listMax) return false;     
-    // add list
-    listCount++;
-    // localStorage.setItem("listMax", `${listMax}`);
-    // localStorage.setItem("listCount", `${listCount}`);
-    
-    const newItem = listItem.cloneNode(true);
-    newItem.querySelector(".list-box__input").value="";
-    newItem.querySelector(".list-box__input").innerText="";   
-    newItem.id = `item-${listCount}`;
-    listBox.appendChild(newItem);
 
-    document.querySelector(`#item-${listCount}>.list-box__input`).removeAttribute("disabled");
-    document.querySelector(`#item-${listCount}>.list-box__input`).focus();
-    //다음 칸으로 넘어가기
-}
-
-function deleteItem(event){
-    let currentId = event.currentTarget.parentNode.parentNode.id.charAt(5);
-    currentId = Number(currentId);
-
-    if(listCount<=1)
-    {
-        document.querySelector("#item-1>.list-box__input").value="";
-        localStorage.removeItem(`${listCount}`);
-        if(listCount==1) 
-        {
-            listCount--;
-        }
-        return false;
-    }
-
-    for(let i = currentId+1; i<= listCount; i++)
-    {
-        document.querySelector(`#item-${i}`).id = `item-${i-1}`;
-        localStorage.setItem(`${i-1}`, localStorage.getItem(`${i}`));
-    }
-    localStorage.removeItem(`${listCount}`);
-    listBox.removeChild(document.querySelector(`#item-${currentId}`));
-    
-    listCount--;
-    // localStorage.setItem("listCount", `${listCount}`);
-}
-
-function editItem(event){
-    let currentId = event.currentTarget.parentNode.parentNode.id.charAt(5);
-    console.log(currentId);
-    const target = document.querySelector(`#item-${currentId}>.list-box__input`)
-    target.removeAttribute("disabled");
-    target.focus();
-}
-
-//send data to Local Storage
-function sendData(id, data){
-    // console.log(id, data);
-    localStorage.setItem(`${id}`, `${data}`);
-}
-
-function savekey(event){
-    const currentId = event.currentTarget.parentNode.id.charAt(5);
-    const input = document.querySelector(`#item-${currentId}>.list-box__input`);
-
+function saveInput(event){
+    let input = document.querySelector(".input-area").value;
+    // console.log(input.value)
     //Enter입력시
     if(event.keyCode == 13)
     {
-        if(input.value == "")
+        if(input == "")
         {
-            alert("값을 입력하세요.")
+            alert("값을 입력하세요.");
         }
-        else{
-            input.setAttribute("disabled", true);
-            // console.log(document.querySelector(`#item-${currentId+1}>.list-box__input`));
-            if(document.querySelector(`#item-${listCount}>.list-box__input`).value == "") 
-            {
-                document.querySelector(`#item-${listCount}>.list-box__input`).focus();
-                return false;
-            }
-            sendData(currentId, input.value);
-            addList(); 
+        else
+        {
+            let li = document.createElement("li");
+            li.id=`item-${listCount}`;
+            li.innerText=input;
+            listBox.appendChild(li);
+            listCount++;
+            
+
+
+            // // input.setAttribute("disabled", true);
+            // // console.log(document.querySelector(`#item-${currentId+1}>.list-box__input`));
+            // if(document.querySelector(`#item-${listCount}>.list-box__input`).value == "") 
+            // {
+            //     document.querySelector(`#item-${listCount}>.list-box__input`).focus();
+            //     return false;
+            // }
+            // sendData(currentId, input.value);
+            // // addList(); 
         }
     }
 }
@@ -154,3 +104,68 @@ function init(){
 }
 
 init();
+
+
+
+
+
+// 
+
+// function addList(){
+//     if(listCount == listMax) return false;     
+//     // add list
+//     listCount++;
+//     // localStorage.setItem("listMax", `${listMax}`);
+//     // localStorage.setItem("listCount", `${listCount}`);
+    
+//     const newItem = listItem.cloneNode(true);
+//     newItem.querySelector(".list-box__input").value="";
+//     newItem.querySelector(".list-box__input").innerText="";   
+//     newItem.id = `item-${listCount}`;
+//     listBox.appendChild(newItem);
+
+//     document.querySelector(`#item-${listCount}>.list-box__input`).removeAttribute("disabled");
+//     document.querySelector(`#item-${listCount}>.list-box__input`).focus();
+//     //다음 칸으로 넘어가기
+// }
+
+// function deleteItem(event){
+//     let currentId = event.currentTarget.parentNode.parentNode.id.charAt(5);
+//     currentId = Number(currentId);
+
+//     if(listCount<=1)
+//     {
+//         document.querySelector("#item-1>.list-box__input").value="";
+//         localStorage.removeItem(`${listCount}`);
+//         if(listCount==1) 
+//         {
+//             listCount--;
+//         }
+//         return false;
+//     }
+
+//     for(let i = currentId+1; i<= listCount; i++)
+//     {
+//         document.querySelector(`#item-${i}`).id = `item-${i-1}`;
+//         localStorage.setItem(`${i-1}`, localStorage.getItem(`${i}`));
+//     }
+//     localStorage.removeItem(`${listCount}`);
+//     listBox.removeChild(document.querySelector(`#item-${currentId}`));
+    
+//     listCount--;
+//     // localStorage.setItem("listCount", `${listCount}`);
+// }
+
+// function editItem(event){
+//     let currentId = event.currentTarget.parentNode.parentNode.id.charAt(5);
+//     console.log(currentId);
+//     const target = document.querySelector(`#item-${currentId}>.list-box__input`)
+//     target.removeAttribute("disabled");
+//     target.focus();
+// }
+
+// //send data to Local Storage
+// function sendData(id, data){
+//     // console.log(id, data);
+//     localStorage.setItem(`${id}`, `${data}`);
+// }

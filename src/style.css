@@ -55,6 +55,11 @@ input {
   min-height: 320px;
 }
 
+.content .input-area {
+  width: 100%;
+  text-align: center;
+}
+
 .content .list-box {
   list-style: none;
   padding: 0px;
