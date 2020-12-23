@@ -111,6 +111,8 @@ function checkButton(event){
     }
 }
 
+
+
 function init(){
     let a = new Array();
 
@@ -122,10 +124,11 @@ function init(){
     {
         a[i]=localStorage.getItem(`${i}`);        
     }
-
+    
     const newItem = listItem.cloneNode(true);
     newItem.querySelector(".list-box__input").value=a[2];
     listBox.appendChild(newItem);
+
 
     // console.log(a);    
 }
