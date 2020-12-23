@@ -38,9 +38,6 @@ function addItem(event){
 
             setData(item.id, input)
             listBox.appendChild(item);
-            
-            // sendData(currentId, input.value);
-            // // addList(); 
         }
     }
 }
@@ -80,19 +77,10 @@ function setData(id, value){
     localStorage.setItem(`${id}`, JSON.stringify(obj));
 }
 
-function prev(){
-
-}
-
-function next(){
-
-}
-
 function init(){
+    //가려주기
     document.querySelector("#item-base").style.display="none";
-    //가려주긔
-    // console.log(listCount, listMax);
- 
+    
     for(let i = 1; i<=listMax; i++)
     {
         let obj = JSON.parse(localStorage.getItem(`item-${date}-${i}`));
@@ -102,7 +90,6 @@ function init(){
         item.querySelector(".list-box__input").value=obj.text;
         item.querySelector(".list-box__input").setAttribute("disabled", true);
         listBox.appendChild(item);
-        
         
         //checkbox toggle
         const chbx = JSON.parse(localStorage.getItem(`${item.id}`));
