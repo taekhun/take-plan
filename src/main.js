@@ -21,8 +21,8 @@ function addList(){
     if(listCount == listMax) return false;     
     // add list
     listCount++;
-    localStorage.setItem("listMax", `${listMax}`);
-    localStorage.setItem("listCount", `${listCount}`);
+    // localStorage.setItem("listMax", `${listMax}`);
+    // localStorage.setItem("listCount", `${listCount}`);
     
     const newItem = listItem.cloneNode(true);
     newItem.querySelector(".list-box__input").value="";
@@ -49,7 +49,7 @@ function deleteItem(event){
     listBox.removeChild(document.querySelector(`#item-${currentId}`));
     
     listCount--;
-    localStorage.setItem("listCount", `${listCount}`);
+    // localStorage.setItem("listCount", `${listCount}`);
 }
 
 function editItem(event){
@@ -66,7 +66,6 @@ function sendData(id, data){
     localStorage.setItem(`${id}`, `${data}`);
 }
 
-
 function savekey(event){
     const currentId = event.currentTarget.parentNode.id.charAt(5);
     const input = document.querySelector(`#item-${currentId}>.list-box__input`);
@@ -79,7 +78,6 @@ function savekey(event){
             alert("값을 입력하세요.")
         }
         else{
-            // input.innerText = input.value;
             input.setAttribute("disabled", true);
             // console.log(document.querySelector(`#item-${currentId+1}>.list-box__input`));
             if(document.querySelector(`#item-${listCount}>.list-box__input`).value == "") 
@@ -115,10 +113,21 @@ function checkButton(event){
 
 function init(){
     let a = new Array();
+
+    // newItem.querySelector(".list-box__input").innerText="";   
+    // newItem.id = `item-${listCount}`;
+    // document.querySelector(`#item-${listCount}>.list-box__input`).removeAttribute("disabled");
+
     for(let i=1 ; i<=5; i++)
     {
         a[i]=localStorage.getItem(`${i}`);        
     }
+
+    const newItem = listItem.cloneNode(true);
+    newItem.querySelector(".list-box__input").value=a[2];
+    listBox.appendChild(newItem);
+
+    // console.log(a);    
 }
 
-init();
+// init();
