@@ -18,9 +18,9 @@
                 </div>
             </div>
             <div class="date-box">
-                <div class="date-box__prev">&lt</div>
+                <!-- <div class="date-box__prev">&lt</div> -->
                 <div class="date-box__date"></div>
-                <div class="date-box__next">&gt</div>
+                <!-- <div class="date-box__next">&gt</div> -->
             </div>
             <div class="header__mypage">MyPage</div>
         </div>
@@ -39,10 +39,10 @@
 
 
                     <div class="list-box__button">
-                        <div class="listbox__button--edit">
+                        <div class="listbox__button--edit" onclick="editItem(event)">
                             <span class="material-icons">edit</span>
                         </div>
-                        <div class="list-box__button--delete" onclick="deleteList(event)">
+                        <div class="list-box__button--delete" onclick="deleteItem(event)">
                             <span class="material-icons">delete_forever</span>
                         </div>
                     </div>

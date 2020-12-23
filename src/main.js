@@ -38,7 +38,7 @@ function addList(){
 
 }
 
-function deleteList(event){
+function deleteItem(event){
     let currentId = event.currentTarget.parentNode.parentNode.id.charAt(5);
     currentId = Number(currentId);
     console.log(currentId);
@@ -51,6 +51,14 @@ function deleteList(event){
     listCount--;
 }
 
+function editItem(event){
+    let currentId = event.currentTarget.parentNode.parentNode.id.charAt(5);
+    console.log(currentId);
+    const target = document.querySelector(`#item-${currentId}>.list-box__input`)
+    target.removeAttribute("disabled");
+    target.focus();
+}
+
 function setData(event){
 
 }
@@ -59,6 +67,8 @@ function setData(event){
 function savekey(event){
     const currentId = event.currentTarget.parentNode.id.charAt(5);
     const input = document.querySelector(`#item-${currentId}>.list-box__input`);
+
+    //Enter입력시
     if(event.keyCode == 13)
     {
         if(input.value == "")
@@ -68,7 +78,12 @@ function savekey(event){
         else{
             input.innerText = input.value;
             input.setAttribute("disabled", true);
-
+            // console.log(document.querySelector(`#item-${currentId+1}>.list-box__input`));
+            if(document.querySelector(`#item-${listCount}>.list-box__input`).value == "") 
+            {
+                document.querySelector(`#item-${listCount}>.list-box__input`).focus();
+                return false;
+            }
             addList(); 
         }
     }
