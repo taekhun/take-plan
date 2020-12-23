@@ -19,23 +19,20 @@ const listMax = 5;
 
 function addList(){
     if(listCount == listMax) return false;     
-    // send value
-    // console.log(event.currentTarget.document.innerText);
-    
     // add list
     listCount++;
+    localStorage.setItem("listMax", `${listMax}`);
+    localStorage.setItem("listCount", `${listCount}`);
+    
     const newItem = listItem.cloneNode(true);
     newItem.querySelector(".list-box__input").value="";
     newItem.querySelector(".list-box__input").innerText="";   
-
     newItem.id = `item-${listCount}`;
     listBox.appendChild(newItem);
 
-    
     document.querySelector(`#item-${listCount}>.list-box__input`).removeAttribute("disabled");
     document.querySelector(`#item-${listCount}>.list-box__input`).focus();
     //다음 칸으로 넘어가기
-
 }
 
 function deleteItem(event){
@@ -46,9 +43,13 @@ function deleteItem(event){
     for(let i = currentId+1; i<= listCount; i++)
     {
         document.querySelector(`#item-${i}`).id = `item-${i-1}`;
+        localStorage.setItem(`${i-1}`, localStorage.getItem(`${i}`));
     }
+    localStorage.removeItem(`${listCount}`);
     listBox.removeChild(document.querySelector(`#item-${currentId}`));
+    
     listCount--;
+    localStorage.setItem("listCount", `${listCount}`);
 }
 
 function editItem(event){
@@ -59,8 +60,10 @@ function editItem(event){
     target.focus();
 }
 
-function setData(event){
-
+//send data to Local Storage
+function sendData(id, data){
+    // console.log(id, data);
+    localStorage.setItem(`${id}`, `${data}`);
 }
 
 
@@ -76,7 +79,7 @@ function savekey(event){
             alert("값을 입력하세요.")
         }
         else{
-            input.innerText = input.value;
+            // input.innerText = input.value;
             input.setAttribute("disabled", true);
             // console.log(document.querySelector(`#item-${currentId+1}>.list-box__input`));
             if(document.querySelector(`#item-${listCount}>.list-box__input`).value == "") 
@@ -84,6 +87,7 @@ function savekey(event){
                 document.querySelector(`#item-${listCount}>.list-box__input`).focus();
                 return false;
             }
+            sendData(currentId, input.value);
             addList(); 
         }
     }
@@ -108,3 +112,13 @@ function checkButton(event){
         checkBtn.parentNode.parentNode.querySelector(".list-box__input").style.textDecoration="none";
     }
 }
+
+function init(){
+    let a = new Array();
+    for(let i=1 ; i<=5; i++)
+    {
+        a[i]=localStorage.getItem(`${i}`);        
+    }
+}
+
+init();
