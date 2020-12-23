@@ -4,7 +4,8 @@
   "description": "오늘 할 일을 기록할 수 있는 단순한 웹입니다.\r # To Study\r - Vanilla JS\r - BEM CSS",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
