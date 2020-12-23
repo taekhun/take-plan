@@ -8,15 +8,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/taekhun/just-do-it.git"
+    "url": "git+https://github.com/taekhun/take-plan.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/taekhun/just-do-it/issues"
+    "url": "https://github.com/taekhun/take-plan/issues"
   },
-  "homepage": "https://github.com/taekhun/just-do-it#readme",
+  "homepage": "https://github.com/taekhun/take-plan#readme",
   "dependencies": {
     "express": "4.17.1"
   }
