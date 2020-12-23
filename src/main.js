@@ -39,6 +39,17 @@ function deleteItem(event){
     let currentId = event.currentTarget.parentNode.parentNode.id.charAt(5);
     currentId = Number(currentId);
 
+    if(listCount<=1)
+    {
+        document.querySelector("#item-1>.list-box__input").value="";
+        localStorage.removeItem(`${listCount}`);
+        if(listCount==1) 
+        {
+            listCount--;
+        }
+        return false;
+    }
+
     for(let i = currentId+1; i<= listCount; i++)
     {
         document.querySelector(`#item-${i}`).id = `item-${i-1}`;
@@ -125,12 +136,12 @@ function init(){
                 document.querySelector("#item-1>.list-box__input").value=a[i];
             }
             else {
-                const newItem = listItem.cloneNode(true);
-                newItem.querySelector(".list-box__input").value=a[i];
-                newItem.id = `item-${i}`;
-                listBox.appendChild(newItem);
+                const item = listItem.cloneNode(true);
+                item.querySelector(".list-box__input").value=a[i];
+                item.id = `item-${i}`;
+                listBox.appendChild(item);
                 document.querySelector(`#item-${i}>.list-box__input`).removeAttribute("disabled");
-                document.querySelector(`#item-${i}>.list-box__input`).focus();  
+                // document.querySelector(`#item-${i}>.list-box__input`).focus();  
                 listCount++;    
             }
                   
