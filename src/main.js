@@ -6,14 +6,14 @@ const dateBox = document.querySelector('.date-box__date');
 
 // 날짜 불러오기
 let today = new Date();
-dateBox.innerHTML= `${today.getMonth()+1}.${today.getUTCDate()} ${today.toString().substring(0,3)}`;
+dateBox.innerHTML= `${today.getMonth()+1}.${today.getDate()} ${today.toString().substring(0,3)}`;
 dateBox.style.fontSize="24px";
 
-let date = Number(`${today.getMonth()+1}${today.getUTCDate()}`);
-//to save at localstorage
+let date = Number(`${today.getMonth()+1}${today.getDate()}`);
+//to save at localstorage. ex)1224
 
 // ListBox에 new item 추가
-let listCount = 0;
+let listCount = localStorage.length;
 const listMax = 5;
 
 function addItem(event){
@@ -22,13 +22,14 @@ function addItem(event){
     if(event.keyCode == 13)
     {
         document.querySelector(".input-area").value="";
-        if(input == "")
+        if(input == "" && !listMax)
         {
             alert("값을 입력하세요.");
         }
         else if(listCount != listMax)
         {
             listCount++; 
+            console.log(listCount);
             let item = document.querySelector("#item-base").cloneNode(true);
             item.id=`item-${date}-${listCount}`;
             item.style.display="flex";
@@ -45,6 +46,7 @@ function addItem(event){
 }
 
 function deleteItem(event){
+    const currentId = event.currentTarget.parentNode.parentNode.id;
 
 }
 
@@ -78,11 +80,42 @@ function setData(id, value){
     localStorage.setItem(`${id}`, JSON.stringify(obj));
 }
 
+function prev(){
+
+}
+
+function next(){
+
+}
 
 function init(){
     document.querySelector("#item-base").style.display="none";
     //가려주긔
-
+    // console.log(listCount, listMax);
+ 
+    for(let i = 1; i<=listMax; i++)
+    {
+        let obj = JSON.parse(localStorage.getItem(`item-${date}-${i}`));
+        let item = document.querySelector("#item-base").cloneNode(true);
+        item.id=`item-${date}-${i}`;
+        item.style.display="flex";
+        item.querySelector(".list-box__input").value=obj.text;
+        item.querySelector(".list-box__input").setAttribute("disabled", true);
+        listBox.appendChild(item);
+        
+        
+        //checkbox toggle
+        const chbx = JSON.parse(localStorage.getItem(`${item.id}`));
+        if(chbx.check == false)
+        {   
+            localStorage.setItem(`${item.id}`,JSON.stringify(chbx));
+            document.querySelector(`#${item.id} .material-icons`).innerText = "check_box";
+        }
+        else{
+            localStorage.setItem(`${item.id}`,JSON.stringify(chbx));
+            document.querySelector(`#${item.id} .material-icons`).innerText = "check_box_outline_blank";
+        }
+    }
 }
 
 init();
