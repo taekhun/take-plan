@@ -26,8 +26,16 @@ function addList(){
     listCount++;
     const newItem = listItem.cloneNode(true);
     newItem.querySelector(".list-box__input").value="";
+    newItem.querySelector(".list-box__input").innerText="";   
+
     newItem.id = `item-${listCount}`;
     listBox.appendChild(newItem);
+
+    
+    document.querySelector(`#item-${listCount}>.list-box__input`).removeAttribute("disabled");
+    document.querySelector(`#item-${listCount}>.list-box__input`).focus();
+    //다음 칸으로 넘어가기
+
 }
 
 function deleteList(event){
@@ -58,18 +66,13 @@ function savekey(event){
             alert("값을 입력하세요.")
         }
         else{
-            document.querySelector(`#item-${currentId}>.list-box__input`).innerText = input.value;
-            // console.log(input.value);
+            input.innerText = input.value;
+            input.setAttribute("disabled", true);
+
             addList(); 
         }
     }
 }
-
-// function enterkey(event) {
-//     if (event.keyCode == 13) {
-//         addList(event);
-//     }
-// }
 
 let toggle = false;
 
