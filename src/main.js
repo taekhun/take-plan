@@ -38,7 +38,6 @@ function addList(){
 function deleteItem(event){
     let currentId = event.currentTarget.parentNode.parentNode.id.charAt(5);
     currentId = Number(currentId);
-    console.log(currentId);
 
     for(let i = currentId+1; i<= listCount; i++)
     {
@@ -114,23 +113,33 @@ function checkButton(event){
 
 
 function init(){
+    // document.querySelector("#item-1").style.visiblity="hidden";
     let a = new Array();
-
-    // newItem.querySelector(".list-box__input").innerText="";   
-    // newItem.id = `item-${listCount}`;
-    // document.querySelector(`#item-${listCount}>.list-box__input`).removeAttribute("disabled");
-
     for(let i=1 ; i<=5; i++)
     {
-        a[i]=localStorage.getItem(`${i}`);        
+        a[i]=localStorage.getItem(`${i}`);
+        if(a[i]!=null)
+        {
+            if(i==1)
+            {
+                document.querySelector("#item-1>.list-box__input").value=a[i];
+            }
+            else {
+                const newItem = listItem.cloneNode(true);
+                newItem.querySelector(".list-box__input").value=a[i];
+                newItem.id = `item-${i}`;
+                listBox.appendChild(newItem);
+                document.querySelector(`#item-${i}>.list-box__input`).removeAttribute("disabled");
+                document.querySelector(`#item-${i}>.list-box__input`).focus();  
+                listCount++;    
+            }
+                  
+        }
     }
     
-    const newItem = listItem.cloneNode(true);
-    newItem.querySelector(".list-box__input").value=a[2];
-    listBox.appendChild(newItem);
-
+    
 
     // console.log(a);    
 }
 
-// init();
+init();
