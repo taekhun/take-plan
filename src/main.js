@@ -90,10 +90,10 @@ function savekey(event){
 }
 
 let toggle = false;
-
+// 수정해야함
 function checkButton(event){
-    const currentId = event.currentTarget.parentNode.id
-    const checkBtn = document.querySelector(`#${currentId} .material-icons`);
+    const currentId = event.currentTarget.parentNode.id.charAt(5);
+    const checkBtn = document.querySelector(`#item-${currentId} .material-icons`);
 
     toggle =!toggle;
     
