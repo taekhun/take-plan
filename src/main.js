@@ -16,9 +16,14 @@ let date = Number(`${today.getMonth()+1}${today.getDate()}`);
 let listCount = localStorage.length;
 const listMax = 5;
 
+function loadInput(){
+    let input = document.querySelector(".input-area").value;
+    return input;
+}
+
 function addItem(event){
     //Input 받아오기
-    let input = document.querySelector(".input-area").value;
+    let input = loadInput();
     if(event.keyCode == 13)
     {
         document.querySelector(".input-area").value="";
@@ -29,7 +34,6 @@ function addItem(event){
         else if(listCount != listMax)
         {
             listCount++; 
-            console.log(listCount);
             let item = document.querySelector("#item-base").cloneNode(true);
             item.id=`item-${date}-${listCount}`;
             item.style.display="flex";
@@ -48,15 +52,38 @@ function deleteItem(event){
 }
 
 function editItem(event){
-
+    const currentId = event.currentTarget.parentNode.parentNode.id;
+    // isChecked(event);
+    const item = document.querySelector(`#${currentId} .list-box__input`)
+    item.removeAttribute("disabled");
+    item.focus();
+    
+    item.addEventListener("keyup", ()=>{
+        let input = document.querySelector(`#${currentId} .list-box__input`).value; 
+        if(window.event.keyCode == 13)
+        {
+            item.value=input;
+            item.setAttribute("disabled", true);
+            setData(currentId, input);
+        }    
+    });
 }
 
-function isChecked(event){
+//체크박스 체크여부 검사
+function isChecked(currentId){
+    const obj = JSON.parse(localStorage.getItem(`${currentId}`));
+    if(obj.check) 
+        return true;
+    else 
+        return false;
+}
+
+function checkToggle(event){
     const currentId = event.currentTarget.parentNode.id;
     const obj = JSON.parse(localStorage.getItem(`${currentId}`));
     const checkButton = document.querySelector(`#${currentId} .material-icons`);
-    obj.check =! obj.check;
-
+    obj.check=!obj.check;
+    
     if(obj.check == false)
     {   
         localStorage.setItem(`${currentId}`,JSON.stringify(obj));
@@ -73,8 +100,7 @@ function isChecked(event){
 
 function setData(id, value){
     const obj = {
-        text : value,
-        check : false
+        text : value
     }
     localStorage.setItem(`${id}`, JSON.stringify(obj));
 }
@@ -112,6 +138,7 @@ function init(){
 
 
 init();
+
 
 // edit, delete, css
 // edit=> 체크박스,이탤릭 해제
