@@ -86,13 +86,13 @@ function checkToggle(event){
     {   
         localStorage.setItem(`${currentId}`,JSON.stringify(obj));
         checkButton.innerText = "check_box";
-        checkButton.parentNode.parentNode.querySelector(".list-box__input").style.textDecoration="line-through";
+        checkButton.parentNode.querySelector(".list-box__input").style.textDecoration="line-through";
     }
     else if(obj.check == false)
     {
         localStorage.setItem(`${currentId}`,JSON.stringify(obj));
         checkButton.innerText = "check_box_outline_blank";
-        checkButton.parentNode.parentNode.querySelector(".list-box__input").style.textDecoration="none";
+        checkButton.parentNode.querySelector(".list-box__input").style.textDecoration="none";
     }
 }
 
@@ -124,53 +124,14 @@ function init(){
         {   
             localStorage.setItem(`${item.id}`,JSON.stringify(getCheck));
             checkBox.innerText = "check_box";
-            checkBox.parentNode.parentNode.querySelector(".list-box__input").style.textDecoration="line-through";
+            checkBox.parentNode.querySelector(".list-box__input").style.textDecoration="line-through";
         }
         else{
             localStorage.setItem(`${item.id}`,JSON.stringify(getCheck));
             checkBox.innerText = "check_box_outline_blank";
-            checkBox.parentNode.parentNode.querySelector(".list-box__input").style.textDecoration="none";
+            checkBox.parentNode.querySelector(".list-box__input").style.textDecoration="none";
         }
     }
 }
 
 init();
-
-
-
-
-
-// function deleteItem(event){
-//     let currentId = event.currentTarget.parentNode.parentNode.id.charAt(5);
-//     currentId = Number(currentId);
-
-//     if(listCount<=1)
-//     {
-//         document.querySelector("#item-1>.list-box__input").value="";
-//         localStorage.removeItem(`${listCount}`);
-//         if(listCount==1) 
-//         {
-//             listCount--;
-//         }
-//         return false;
-//     }
-
-//     for(let i = currentId+1; i<= listCount; i++)
-//     {
-//         document.querySelector(`#item-${i}`).id = `item-${i-1}`;
-//         localStorage.setItem(`${i-1}`, localStorage.getItem(`${i}`));
-//     }
-//     localStorage.removeItem(`${listCount}`);
-//     listBox.removeChild(document.querySelector(`#item-${currentId}`));
-    
-//     listCount--;
-//     // localStorage.setItem("listCount", `${listCount}`);
-// }
-
-// function editItem(event){
-//     let currentId = event.currentTarget.parentNode.parentNode.id.charAt(5);
-//     console.log(currentId);
-//     const target = document.querySelector(`#item-${currentId}>.list-box__input`)
-//     target.removeAttribute("disabled");
-//     target.focus();
-// }
