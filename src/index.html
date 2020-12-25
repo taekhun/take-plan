@@ -11,22 +11,11 @@
 
 <body>
     <div class="container">
-        <!-- <div class="header">
-            <div class="header__logo">
-                <div class="logo">
-                    <div class="logo__title">take<br>plan</div>
-                </div>
-            </div>
-            <div class="date-box">
-                <div class="date-box__prev">&lt</div>
-                <div class="date-box__date"></div>
-                <div class="date-box__next">&gt</div>
-            </div>
-            <div class="header__mypage">MyPage</div>
-        </div> -->
+        <div class="header">
+            <input type="text" class="input-area" placeholder="What are your plans?" onkeyup="addItem(event)">
+        </div>
 
         <div class="content">
-            <input type="text" class="input-area" placeholder="Tell me what to do" onkeyup="addItem(event)">
             <ul class="list-box">
                 <li class="list-box__item" id="item-base">
                     <div class="list-box__checkbox" onclick="checkToggle(event)">

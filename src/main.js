@@ -2,7 +2,7 @@
 
 const listBox = document.querySelector(".list-box")
 let listCount = localStorage.length;
-const listMax = 5;
+const COUNT_MAX = 10;
 
 function loadInput(){
     let input = document.querySelector(".input-area").value;
@@ -15,11 +15,11 @@ function addItem(event){
     if(event.keyCode == 13)
     {
         document.querySelector(".input-area").value="";
-        if(input == "" && !listMax)
+        if(input == "" && !COUNT_MAX)
         {
             alert("값을 입력하세요.");
         }
-        else if(listCount != listMax)
+        else if(listCount != COUNT_MAX)
         {
             listCount++; 
             let item = document.querySelector("#item-base").cloneNode(true);
@@ -107,7 +107,7 @@ function init(){
     //가려주기
     document.querySelector("#item-base").style.display="none";
     
-    for(let i = 1; i<=listMax; i++)
+    for(let i = 1; i<=COUNT_MAX; i++)
     {
         let obj = JSON.parse(localStorage.getItem(`item-${i}`));
         let item = document.querySelector("#item-base").cloneNode(true);
@@ -136,10 +136,6 @@ function init(){
 
 init();
 
-
-
-// edit, delete, css
-// edit=> 체크박스,이탤릭 해제
 
 
 
