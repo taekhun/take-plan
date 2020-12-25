@@ -57,7 +57,8 @@ function editItem(event){
     const item = document.querySelector(`#${currentId} .list-box__input`)
     item.removeAttribute("disabled");
     item.focus();
-    
+    item.value="";
+
     item.addEventListener("keyup", ()=>{
         let input = document.querySelector(`#${currentId} .list-box__input`).value; 
         if(window.event.keyCode == 13)
@@ -84,13 +85,13 @@ function checkToggle(event){
     const checkButton = document.querySelector(`#${currentId} .material-icons`);
     obj.check=!obj.check;
     
-    if(obj.check == false)
+    if(obj.check == true)
     {   
         localStorage.setItem(`${currentId}`,JSON.stringify(obj));
         checkButton.innerText = "check_box";
         checkButton.parentNode.parentNode.querySelector(".list-box__input").style.textDecoration="line-through";
     }
-    else if(obj.check == true)
+    else if(obj.check == false)
     {
         localStorage.setItem(`${currentId}`,JSON.stringify(obj));
         checkButton.innerText = "check_box_outline_blank";
@@ -122,7 +123,7 @@ function init(){
         //checkbox toggle
         const getCheck = JSON.parse(localStorage.getItem(`${item.id}`));
         const checkBox = document.querySelector(`#${item.id} .material-icons`);
-        if(getCheck.check == false)
+        if(getCheck.check == true)
         {   
             localStorage.setItem(`${item.id}`,JSON.stringify(getCheck));
             checkBox.innerText = "check_box";
