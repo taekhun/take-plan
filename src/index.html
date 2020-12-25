@@ -18,19 +18,15 @@
         <div class="content">
             <ul class="list-box">
                 <li class="list-box__item" id="item-base">
-                    <div class="list-box__checkbox" onclick="checkToggle(event)">
-                        <span class="material-icons">check_box_outline_blank</span>
-                    </div>
+                    <i class="list-box__checkbox material-icons"
+                        onclick="checkToggle(event)">check_box_outline_blank</i>
 
                     <input class="list-box__input" type="text" value="">
 
                     <div class="list-box__button">
-                        <div class="listbox__button--edit" onclick="editItem(event)">
-                            <span class="material-icons">edit</span>
-                        </div>
-                        <div class="list-box__button--delete" onclick="deleteItem(event)">
-                            <span class="material-icons">delete_forever</span>
-                        </div>
+                        <i class="list-box__button--edit material-icons" onclick="editItem(event)">edit</i>
+                        <i class="list-box__button--delete material-icons"
+                            onclick="deleteItem(event)">delete_forever</i>
                     </div>
                 </li>
             </ul>

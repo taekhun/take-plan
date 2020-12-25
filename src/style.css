@@ -13,7 +13,7 @@ input {
   -webkit-box-shadow: 0px 0px 36px 15px rgba(0, 0, 0, 0.28);
           box-shadow: 0px 0px 36px 15px rgba(0, 0, 0, 0.28);
   max-width: 480px;
-  margin: 24px auto 48px;
+  margin: 48px auto 48px;
 }
 
 .header .input-area {
@@ -24,7 +24,7 @@ input {
 }
 
 .content {
-  padding: 24px;
+  padding: 0 24px 24px;
   min-height: 240px;
 }
 
@@ -42,7 +42,7 @@ input {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  margin: 4 4px;
+  margin: 8px 0px;
 }
 
 .content .list-box__checkbox.material-icons {
@@ -54,10 +54,11 @@ input {
   border: none;
   outline: none;
   width: 100%;
-  height: 28px;
-  font-size: 24px;
+  height: 24px;
+  line-height: 24px;
+  font-size: 20px;
   padding: 0px;
-  margin: 0px;
+  margin: 0px 0px 0px 2px;
 }
 
 .content .list-box__button {
@@ -67,7 +68,11 @@ input {
   cursor: pointer;
 }
 
-.content .list-box__button--edit, .content .list-box__button--delete {
+.content .list-box__button--edit.material-icons {
+  font-size: 28px;
+}
+
+.content .list-box__button--delete.material-icons {
   font-size: 28px;
 }
 /*# sourceMappingURL=style.css.map */
