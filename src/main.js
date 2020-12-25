@@ -1,18 +1,6 @@
 "use strict"
 
-const checkBox = document.querySelector(".list-box__checkbox");
 const listBox = document.querySelector(".list-box")
-const dateBox = document.querySelector('.date-box__date');
-
-// 날짜 불러오기
-let today = new Date();
-dateBox.innerHTML= `${today.getMonth()+1}.${today.getDate()} ${today.toString().substring(0,3)}`;
-dateBox.style.fontSize="24px";
-
-let date = Number(`${today.getMonth()+1}${today.getDate()}`);
-//to save at localstorage. ex)1224
-
-// ListBox에 new item 추가
 let listCount = localStorage.length;
 const listMax = 5;
 
@@ -35,7 +23,7 @@ function addItem(event){
         {
             listCount++; 
             let item = document.querySelector("#item-base").cloneNode(true);
-            item.id=`item-${date}-${listCount}`;
+            item.id=`item-${listCount}`;
             item.style.display="flex";
             item.querySelector(".list-box__input").value=input;
             item.querySelector(".list-box__input").setAttribute("disabled", true);
@@ -48,13 +36,22 @@ function addItem(event){
 
 function deleteItem(event){
     const currentId = event.currentTarget.parentNode.parentNode.id;
+    let id = Number(currentId.charAt(currentId.length-1));
 
+    for(let i = id+1; i<= listCount; i++)
+    {
+        document.querySelector(`#item-${i}`).id = `item-${i-1}`;
+        localStorage.setItem(`item-${i-1}`, localStorage.getItem(`item-${i}`));
+    }
+    localStorage.removeItem(`item-${listCount}`);
+    listBox.removeChild(document.querySelector(`#item-${id}`));
+    
+    listCount--;
 }
 
 function editItem(event){
     const currentId = event.currentTarget.parentNode.parentNode.id;
-    // isChecked(event);
-    const item = document.querySelector(`#${currentId} .list-box__input`)
+    const item = document.querySelector(`#${currentId} .list-box__input`);
     item.removeAttribute("disabled");
     item.focus();
     item.value="";
@@ -112,9 +109,9 @@ function init(){
     
     for(let i = 1; i<=listMax; i++)
     {
-        let obj = JSON.parse(localStorage.getItem(`item-${date}-${i}`));
+        let obj = JSON.parse(localStorage.getItem(`item-${i}`));
         let item = document.querySelector("#item-base").cloneNode(true);
-        item.id=`item-${date}-${i}`;
+        item.id=`item-${i}`;
         item.style.display="flex";
         item.querySelector(".list-box__input").value=obj.text;
         item.querySelector(".list-box__input").setAttribute("disabled", true);
@@ -137,8 +134,8 @@ function init(){
     }
 }
 
-
 init();
+
 
 
 // edit, delete, css
